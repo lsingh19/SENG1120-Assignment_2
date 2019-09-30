@@ -1,4 +1,4 @@
-# SENG1120-Assignment_2
+# SENG1120-Assignment_2 - 10.0/10.0
 DEMO:
 
 1. Program compiles and works correctly with the files provided (each line incorrectly printed should attract a 2mark penalty). 
