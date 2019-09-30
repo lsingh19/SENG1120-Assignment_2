@@ -1,0 +1,209 @@
+/*
+ * File Name: LinkedList.template
+ * Course: SENG1120
+ * Assessment Title: Assignment 2
+ * Last Modified: 10/05/2019
+ */
+ 
+ #include <cstdlib> 
+ #include <iostream> 
+ 
+ using namespace std; 
+ 
+// --------------------------------------------------------------------- // 
+// 							Constructors 
+// --------------------------------------------------------------------- // 
+ template <typename value_type>
+ LinkedList<value_type>::LinkedList()
+ {
+	 head = NULL;	
+	 tail = NULL;
+	 current = NULL; 
+	 list_length = 0; 
+ }
+ 
+ template <typename value_type>
+ LinkedList<value_type>::LinkedList(const value_type& data)
+ {
+	 addToTail(data);   // calling the 'addToTail' fucntion which will insert the the data as a node into the linkedlist
+						// the head, tail and current pointer within the functions are set depending on the number of nodes in the LinkedList.
+ }
+ 
+
+// --------------------------------------------------------------------- // 
+// 							Destructor 
+// --------------------------------------------------------------------- // 
+ 
+template <typename value_type>
+LinkedList<value_type>::~LinkedList()
+{
+	current = NULL; 			//setting current to NULL
+	while (head != NULL)		// as long as the head does not reach the tail of the LinkedList then the while loop will keep executing
+	{
+		Node<value_type>* temp = head;		// creating a temporary pointer which will be used to delete the node
+			if (head == tail)				// if the head reaches the tail that means that only one node remains within the linkedlist
+			{
+				head = NULL;				// setting head to NULL 
+				tail = NULL;				// setting tail to NULL
+				delete temp;				// delete temp which deletes the last remaining node
+			}
+			else 
+			{
+				head = head->get_next(); 	// 'head' is moved to the following node in the linked list
+				head->set_previous(NULL);	// the 'previous' pointer on the head node is set to NULL.
+				temp->set_next(NULL);		// setting the 'next' on the to be deleted node to NULL
+				delete temp; 				// the node is deleted as well as the 'temp' pointer.
+			}
+	}
+	list_length=0;
+}
+
+
+// --------------------------------------------------------------------- // 
+// 							Member Functions 
+// --------------------------------------------------------------------- // 
+
+template <typename value_type>
+void LinkedList<value_type>::addToTail(const value_type& data)
+ {
+	 if (head == NULL)											// if the head is equal to NULL meaning that there is no nodes within the linked list. 
+	 {
+		 head = new Node<value_type>(data,NULL,NULL);			// the 'head' pointer is set to the newly created Node. 
+		 tail = head;											// the 'tail' pointer is set to the newly created Node.
+		 current = head; 										// the 'current' pointer is set to the newly created Node
+		 list_length = 1; 										// the list length is set 1 as there is only one node that's in the Linked List and it's the one created in this 'if'. 
+	 }
+		 else 		
+		 {
+			// creating a temp node with the data parameter. The node will have it's previous node set to the tail node.
+			Node<value_type>* temp = new Node<value_type>(data,tail,NULL);		
+			tail -> set_next(temp);				// sets 'next' pointer of the tail node to the temp node 
+			tail = temp; 						// assiging the tail pointer to the new tail node of the Linked List
+			temp = NULL; 						// setting the temp node to NULL 
+			list_length++;						// incrementing the list length
+		 }
+ }
+
+ 
+template <typename value_type>
+void LinkedList<value_type>::move_To_Head()
+ {
+	 current = head; 				// assigning the current pointer to the head pointer
+ }
+
+ 
+template <typename value_type>
+bool LinkedList<value_type>::check_current() const
+ {
+	 if (current == NULL) 			// checking if current is NULL
+		 return true;				// returns true if the current pointer is equal to NULL 
+	 else 
+		 return false; 				// returns false if the current pointer is NOT equal to NULL
+ }
+
+ 
+template <typename value_type>
+ void LinkedList<value_type>::forward()
+ {
+	 current = current->get_next();   // Moving the current pointer to the next node within the LinkedList
+ }
+ 
+
+template <typename value_type>
+value_type LinkedList<value_type>::get_current_data() const
+ {
+	return current -> get_data();			// returning the data within the Node that the current pointer is pointing too. 
+ }	 
+ 
+ 
+ template <typename value_type>
+ value_type& LinkedList<value_type>::get_head_data() const
+ {
+	 return head->get_data(); 				// returns a reference to the data stored at the head node (the node that the head pointer is pointing too)
+ }
+ 
+ template <typename value_type>
+ value_type LinkedList<value_type>::remove_head() 
+ {
+		if (list_length == 1)			
+		{
+			value_type temp_data = tail->get_data(); 	// creating a temporary value_type variable and is set to the tail node data.
+			Node<value_type>* temp = tail;				// creating a temporary Node pointer and assigning to the tail node
+			head = NULL;								// setting the head pointer to NULL 
+			current = NULL;								// setting the current pointer to NULL 
+			tail = NULL; 								// setting the tail pointer to NULL
+			list_length--;								// decrementing the list_length variable 
+			delete temp;								// deleting the temp pointer that points to the last node in the LinkedList
+			return temp_data; 							// returning the data that was stored in the last node. 
+		}
+			else 			
+				{
+					value_type temp_data = head->get_data();			// creating a temporary value_type variable and is set to the head node data
+					Node<value_type>* temp_head = head; 				// creating a temporary node pointer and setting it to the head. 
+					head = temp_head->get_next();						// moving the head pointer to the next node within the LinkedList
+					delete temp_head; 									// deleting the temporary node pointer and the node that its pointing too
+					list_length--;										// decrementing the list_length variable
+					return temp_data;  									// returning the data that was stored in the old head on the linkedlist
+				}
+ }
+ 
+ 
+ template <typename value_type>
+ void LinkedList<value_type>::addToHead(const value_type& data)
+ {
+	 if (head == NULL)							// if the head is equal to NULL meaning that there is no nodes within the linked list. 
+	 {
+		 head = new Node<value_type>(data,NULL,NULL);					// the 'head' pointer is set to the newly created Node. 
+		 tail = head;							// the 'tail' pointer is set to the newly created Node.
+		 current = head; 						// the 'current' pointer is set to the newly created Node
+		 list_length = 1; 						// the list length is set 1 as there is only one node that's in the Linked List and it's the one created in this 'if'. 
+	 }
+		 else 		
+		 {
+			// Creating a temporary node with the data provided to the method. The next pointer within the node will be set to the head node (head pointer)
+			Node<value_type>* head_insert = new Node<value_type>(data,NULL,head); 
+			head -> set_previous(head_insert);				// setting the 'previous' pointer within the head node to the temporary node
+			head = head_insert; 							// setting the head pointer to the temporary pointer (making it the head of the linkedlist)
+			list_length++;									// incrementing the list_length variable 
+			head_insert = NULL; 							// setting the temporary node to NULL. 
+		 }
+ }
+ 
+ 
+ template <typename value_type>
+ int LinkedList<value_type>::size() const
+ {
+	 return list_length;				// returning the value of the variable 'list_length' within linkedlist. 
+ }
+ 
+ 
+ template <typename value_type>
+ string LinkedList<value_type>::list_data() 
+ {
+	std::stringstream out;						// declaring a stringstream variable 
+	 move_To_Head();							// moving current pointer of the linkedlist to the head of the list 
+	 while (check_current() != true)			// checking to see the current is equal to NULL 
+	 {
+		 out << get_current_data() << " ";			// retrieving the data of the current node and storing it in 'out' 
+		 forward();								// moving the current pointer to the next node in the linked list
+	 }
+	 return out.str();  						// returning out in string format
+ }
+
+ 
+// --------------------------------------------------------------------- // 
+// 							Overloaded Operator 
+// --------------------------------------------------------------------- // 
+ template <typename value_type>
+ ostream& operator << (ostream& out, LinkedList<value_type>& list)
+ {
+	 list.move_To_Head();							// moving current pointer of the linkedlist to the head of the list 
+	 while (list.check_current() != true)			// checking to see the current is equal to NULL 
+	 {
+		 out << list.get_current_data();			// retrieving the data of the current node and storing it in 'out' 
+		 list.forward();							// moving the current pointer to the next node in the linked list
+	 }
+	 return out;	// returning out
+ }
+ 
+ 

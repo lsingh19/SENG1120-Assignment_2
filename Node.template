@@ -1,0 +1,107 @@
+/*
+ * File Name: Node.template
+ * Course: SENG1120
+ * Assessment Title: Assignment 2
+ * Last Modified: 10/05/2019
+ */
+
+// --------------------------------------------------------------------- // 
+// 							Constructors 
+// --------------------------------------------------------------------- // 
+template <typename value_type>
+Node<value_type>::Node()
+	{
+		next = NULL;				// sets the 'next' pointer to NULL
+		previous = NULL;			// sets the 'previous' pointer to NULL
+		data = value_type();		// creates an instance of Student using the constructor for Student in the Student class. 
+	}
+
+template <typename value_type>
+Node<value_type>::Node(const value_type& init_data)
+	{
+		data = init_data;		// sets the data within the node to the input data from the user
+		next = NULL;			// sets the 'next' pointer to NULL 
+		previous = NULL; 		// sets the 'previous' pointer to NULL 
+	}
+
+	
+// --------------------------------------------------------------------- // 
+// 								Destructor 
+// --------------------------------------------------------------------- //
+template <typename value_type>
+Node<value_type>::~Node()
+	{
+		next = NULL; 			// sets the 'next' pointer to NULL, so when the function returns the pointer is deleted as it goes out of scope. 
+		previous = NULL;		// sets the 'previous' pointer to NULL, so when the function returns the pointer is deleted as it goes out of scope.
+				
+		// The following lines of code are ways of deleting the data in the node, but they all result in a segmentation fault (core dumped) error after 
+		// after the sorting algorithm within the main file. 
+		
+		// calls the destructor within the value_type. Causes a segmentation fault (core dumped) 
+			// data.~value_type(); 
+		
+		// another way of calling the destructor within the value_type. Causes a segmentation fault (core dumped) 
+			// data.~data()
+		
+		// Trying to set the data to NULL but it causes a segmentation fault (core dumped) error
+			// data = NULL;
+		
+		// Since the data is created on the stack it means that it will automatically be deleted from the program once it goes out of scope by the implicit 
+		// automatic garbage collection on the stack. Although this will work, in reality the user/programmer should be able to delete the data on command. 
+	}
+
+	
+// --------------------------------------------------------------------- // 
+// 							Methods/Functions 
+// --------------------------------------------------------------------- // 	
+template <typename value_type>
+Node<value_type>::Node(const value_type& init_data, Node* nPrevious, Node* nNext)
+	{
+		data = init_data;			// sets the data within the node to the input data from the user
+		previous = nPrevious;		// sets the 'next' pointer to the input parameter from the user for this pointer 
+		next = nNext;				// sets the 'previous' pointer to the input parameter from the user for the pointer
+	}
+		
+template <typename value_type>
+void Node<value_type>::set_data(const value_type& new_data)	
+	{
+		data = new_data;			// sets the data to the input parameter.  
+	}
+	
+// Note: if we set the input paramater to a constant then an error occurs where the program has a
+// problem assigning a const Node* to a Node*. 
+template <typename value_type>
+void Node<value_type>::set_next(Node* next_link)				
+	{
+		next = next_link;			// sets the 'next' pointer within the node to the input parameter
+	}
+
+template <typename value_type>
+void Node<value_type>::set_previous(Node* previous_link)		
+	{
+		previous = previous_link;		// sets the 'previous' pointer within the node to the input parameter
+	}
+			
+template <typename value_type>
+value_type Node<value_type>::get_data() const					
+	{ 
+		return data;			// returns the data stored within the Node. 
+	} 
+	
+template <typename value_type> 
+value_type& Node<value_type>:: get_data() 
+	{
+		return data;			// returns a reference to the data stored within the Node. 
+	}
+
+template <typename value_type>
+Node<value_type>* Node<value_type>::get_previous() const 			
+	{
+		return previous;		// returns the Node that the 'previous' pointer is pointing too. 
+	}
+
+template <typename value_type>
+Node<value_type>* Node<value_type>::get_next() const 				
+	{
+		return next;			// returns the Node that the 'next' pointer is pointing too.
+	}

@@ -1,0 +1,76 @@
+/*
+ * File Name: LQueue.template
+ * Course: SENG1120
+ * Assessment Title: Assignment 2
+ * Last Modified: 10/05/2019
+ */
+
+#include <iostream>
+#include <cstdlib>
+#include <sstream>
+#include <string>
+
+	// ------------------------------------------------------
+	// 					Constructors
+	// ------------------------------------------------------
+	template <typename value_type>
+	LQueue<value_type>::LQueue()
+	{
+		list = new LinkedList<value_type>();		// an instance is created using the constructor within linked list that accepts no parameters. 
+	}
+
+	template <typename value_type>
+	LQueue<value_type>::LQueue(const value_type& data)
+	{
+		list = new LinkedList<value_type>(data);	// an instance is created using the constructor within linked list that accepts one parameters.
+	}
+
+	// ------------------------------------------------------
+	// 					Destructor
+	// ------------------------------------------------------
+
+	template <typename value_type>
+	LQueue<value_type>::~LQueue()
+	{
+		delete list; 								// deletes the list pointer and the instance of linked list. 
+	}
+
+	// ------------------------------------------------------
+	// 					Member Functions
+	// ------------------------------------------------------
+
+	template <typename value_type>
+	void LQueue<value_type>::enqueue(const value_type& data)
+	{
+		list->addToTail(data); 						// calling the 'addToTail' function within linked list to add an object to the queue.  
+	}
+
+	template <typename value_type>
+	value_type& LQueue<value_type>::front() const
+	{
+		return list->get_head_data();				// calling the 'get_head_data' function within linked list to get a reference to the data within the first node in the list.  
+	}
+
+	template <typename value_type>
+	value_type LQueue<value_type>::dequeue() const
+	{
+		return list->remove_head(); 				// removes head node of the linked list and data within the node is returned. 
+	}
+
+
+	template <typename value_type>
+	string LQueue<value_type>::print() const
+	{
+		return list->list_data();				// returns the output from the method 'list_data' within LinkedList 
+	}
+
+	// -------------------------------------------------------
+	// 					Overloaded Operator 
+	// -------------------------------------------------------
+
+	template <typename value_type>
+	ostream& operator << (ostream& out, LQueue<value_type>& queue)
+	{
+		out << queue.print(); 				// calling the method 'print' within the LQueue class. The output from the method is stored in 'out'
+		return out;							// returns 'out' 
+	} 

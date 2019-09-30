@@ -1,0 +1,83 @@
+/*
+ * File Name: LStack.template
+ * Course: SENG1120
+ * Assessment Title: Assignment 2
+ * Last Modified: 10/05/2019
+ */
+
+// ------------------------------------------------------
+// 					Constructors
+// ------------------------------------------------------
+template <typename value_type>
+LStack<value_type>::LStack()
+{
+	list = new LinkedList<value_type>(); 		// initialisng an instance of linked list 
+}
+
+template <typename value_type>
+LStack<value_type>::LStack(const value_type& data)
+{
+	list = new LinkedList<value_type>(data);	// calling the constructor with one parameter from the linked list class.  
+}
+
+// ------------------------------------------------------
+// 					Destructor
+// ------------------------------------------------------
+
+template <typename value_type>
+LStack<value_type>::~LStack()
+{
+	delete list;		// deleting the stack and the instance of linked list and nodes within it. 
+}
+
+// ------------------------------------------------------
+// 					Member Functions
+// ------------------------------------------------------
+
+template <typename value_type>
+void LStack<value_type>::push(const value_type& data)
+{
+	list->addToHead(data);			// adding an object onto the stack via the method 'addToHead' in the LinkedList class. 
+}
+
+template <typename value_type>
+value_type LStack<value_type>::pop() const
+{
+	return list->remove_head();		// removing and returning the top object from the stack. 
+}
+
+template <typename value_type>
+value_type& LStack<value_type>::top() const
+{
+	return list->get_head_data();	// returning a reference to the object at the top of the stack. 
+} 
+
+template <typename value_type>
+bool LStack<value_type>::isEmpty() const
+{
+	int x = list->size();		// creating an integer variable to store the value returned from the LinkedList method 'size' 
+	if (x == 0)					// If 'x' is equal to 0 meaning that the Stack is empty
+	{
+		return true; 			// returns true
+	}
+	else 						// the Stack is not empty as the variable 'x' is not equal to '0' 
+		return false; 			// returns false. 
+}
+
+template <typename value_type>
+string LStack<value_type>::print() const
+{
+	return list->list_data();			// returning the string output from the method 'list_data' within the LinkedList class 
+}
+
+// ------------------------------------------------------
+// 					Overloaded Operators
+// ------------------------------------------------------
+
+template <typename value_type>
+ostream& operator << (ostream& out, LStack<value_type>& stack)
+{
+	out << stack.print(); 			// storing the output from the method 'print' within the LStack class into 'out'
+	return out;						// returning 'out' 
+}
+  
