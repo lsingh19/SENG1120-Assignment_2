@@ -1,4 +1,4 @@
-# SENG1120-Assignment_2 - 10.0/10.0
+# SENG1120-Assignment_2
 DEMO:
 
 1. Program compiles and works correctly with the files provided (each line incorrectly printed should attract a 2mark penalty). 
@@ -37,7 +37,7 @@ Late Deduction (  )
  
 C: Total deductions ( 0.0 / 32.0) 
 
-FINAL MARK [ MIN (10.0, A+B-C) ]: 10.0  
+FINAL MARK [ MIN (10.0, A+B-C) ]: 10.0 / 10.0 
 
 Comments: Good Work :) 
 
