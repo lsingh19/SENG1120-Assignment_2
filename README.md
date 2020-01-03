@@ -1,43 +1,38 @@
 # SENG1120-Assignment_2
+**_Mark:_** 10.0 / 10.0 
+
+## Comments by Marker
 DEMO:
 
 1. Program compiles and works correctly with the files provided (each line incorrectly printed should attract a 2mark penalty). 
 
-2. Implementing a linked list of stacks. o For SENG1120 students, add 2.0 bonus marks if implemented correctly. o For SENG6120 students, remove 2.0 marks if not implemented correctly. 
+2. Implementing a linked list of stacks. 
+    - For SENG1120 students, add 2.0 bonus marks if implemented correctly. 
+    - For SENG6120 students, remove 2.0 marks if not implemented correctly. 
  
 A: Total ( 10.0 /10.0)         
 
 B: Bonus for List<LStack> ( 0.0 / 2.0) 
 
-REMOVE MARKS IF: 
-
-  - Code leads to memory leaks during execution ( 0.0 /-2.0) 
-
-  - Lack of macroguards ( 0.0 /-1.0)
-
-  - Lack of destructors ( 0.0 /-1.0) 
-
-  - Lack of const qualifiers ( 0.0 /-1.0) 
-
-  - Lack of documentation in the code ( 0.0 /-2.0) 
-
-  - Lack of templates ( 0.0 /-5.0) 
-
-  - Declaration of temporary variables as member variables of the class (0.0/-1.0)
-
-  - Lack of use of dynamic memory allocation in Node, LStack , LQueue or LinkedList ( 0.0/-10.0)
-
-  - Violation of encapsulation / information hiding ( 0.0 /-5.0) 
-
-  - Implementation in header files ( 0.0 /-2.0) 
-
-  - Use of friend methods ( 0.0 /-2.0)
+ | REMOVE MARKS IF |  | 
+ |--------------|------------|
+ |Code leads to memory leaks during execution | ( 0.0 /-2.0) |
+ |Lack of macroguards | ( 0.0 /-1.0) |
+ |Lack of destructors | ( 0.0 /-1.0) |
+ |Lack of const qualifiers | ( 0.0 /-1.0) |
+ |Lack of documentation in the code | ( 0.0 /-2.0)  |
+ |Lack of templates | ( 0.0 /-5.0) |
+ |Declaration of temporary variables as member variables of the class | (0.0/-1.0) |
+ |Lack of use of dynamic memory allocation in Node, LStack , LQueue or LinkedList | ( 0.0/-10.0) |
+ |Violation of encapsulation / information hiding | ( 0.0 /-5.0) |
+ |Implementation in header files | ( 0.0 /-2.0) |
+ |Use of friend methods | ( 0.0 /-2.0) |
 
 Late Deduction (  ) 
  
 C: Total deductions ( 0.0 / 32.0) 
 
-FINAL MARK [ MIN (10.0, A+B-C) ]: 10.0 / 10.0 
+FINAL MARK [ MIN (10.0, A+B-C) ]: 10.0
 
 Comments: Good Work :) 
 
